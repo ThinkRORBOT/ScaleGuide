@@ -1,0 +1,1 @@
+Application for Musicians particularly guitarists, to find out the scale a series of notes is in or a series of notes in a scale or mode
