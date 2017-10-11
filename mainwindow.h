@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QPushButton>
+#include "notewindow.h"
+#include "scalewindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -25,8 +27,6 @@ private slots:
     void handleButton();
     void openAbout();
 
-    void on_scaleButton_pressed();
-    void on_noteButton_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -37,6 +37,9 @@ private:
 
     QMenu *helpMenu;
     QAction *aboutAction;
+
+    NoteWindow *newNoteWindow;
+    ScaleWindow *newScaleWindow;
 
 };
 

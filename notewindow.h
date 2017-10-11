@@ -3,15 +3,20 @@
 
 #include <QMainWindow>
 
+namespace Ui {
+class NoteWindow;
+}
+
 class NoteWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
     explicit NoteWindow(QWidget *parent = 0);
+    ~NoteWindow();
 
-signals:
-
-public slots:
+private:
+    Ui::NoteWindow *ui;
 };
 
 #endif // NOTEWINDOW_H

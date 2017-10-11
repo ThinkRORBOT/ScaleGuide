@@ -25,9 +25,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    notewindow.cpp
+    notewindow.cpp \
+    scalewindow.cpp
 
 HEADERS  += mainwindow.h \
-    notewindow.h
+    notewindow.h \
+    scalewindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    notewindow.ui \
+    scalewindow.ui
+
+RESOURCES +=
+
+DISTFILES +=
