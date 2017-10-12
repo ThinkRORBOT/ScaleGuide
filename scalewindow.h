@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QLabel>
+class MainWindow;
 
 namespace Ui {
 class ScaleWindow;
@@ -17,8 +18,7 @@ public:
     ~ScaleWindow();
 
 private slots:
-    void findKeyButtonPressed();
-    void backButtonPressed();
+    void buttonPressed();
 
     void openAbout();
     void openHelp();
@@ -33,6 +33,8 @@ private:
     QMenu *helpMenu;
     QAction *aboutAction;
     QAction *helpAction;
+
+    MainWindow* mainWindow;
 
 };
 

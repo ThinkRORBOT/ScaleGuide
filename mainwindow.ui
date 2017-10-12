@@ -26,11 +26,8 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QPushButton#noteButton {color:b60000}
-
-QPushButton#noteButton:hover (color:ff0000)
-
-background-color: #fff</string>
+   <string notr="true">
+background-color:grey</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="verticalLayoutWidget">
@@ -63,8 +60,12 @@ background-color: #fff</string>
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton#scaleButton{color:0d02af}
-QPushButton#scaleButton:hover{color:0000ff}</string>
+        <string notr="true">QPushButton{background-color:rgb(0, 20, 230);}
+QPushButton:hover{background-color:rgb(0, 0, 255);
+opacity: 0.7;}
+QPushButton{color:rgb(255, 255, 255);
+opacity: 0.7;}
+QPushButton{border: 1px solid gray;}</string>
        </property>
        <property name="text">
         <string>Find Scale</string>
@@ -77,6 +78,20 @@ QPushButton#scaleButton:hover{color:0000ff}</string>
         <font>
          <pointsize>32</pointsize>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+background-color:rgb(240,40, 0);
+border:1px solid gray;
+color: white;
+opacity:0.7;
+
+}
+
+QPushButton:hover {background-color:rgb(255, 0 , 0);
+color: white;
+opacity: 0.7;}
+</string>
        </property>
        <property name="text">
         <string>Find Notes</string>
@@ -92,7 +107,7 @@ QPushButton#scaleButton:hover{color:0000ff}</string>
      <x>0</x>
      <y>0</y>
      <width>1228</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

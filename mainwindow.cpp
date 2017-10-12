@@ -42,9 +42,11 @@ void MainWindow::handleButton() {
     if (button->objectName() == "noteButton") {
         newNoteWindow = new NoteWindow();
         newNoteWindow->show();
+        this->close();
     } else if (button->objectName() == "scaleButton") {
         newScaleWindow = new ScaleWindow();
         newScaleWindow->show();
+        this->close();
     }
 
 }

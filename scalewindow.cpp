@@ -1,20 +1,33 @@
 #include "scalewindow.h"
 #include "ui_scalewindow.h"
+#include "mainwindow.h"
 #include <QTCore>
 #include <QTGui>
 #include <QWidget>
 #include <QMessageBox>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <iostream>
+#include <QString>
+
+using namespace std;
 
 ScaleWindow::ScaleWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ScaleWindow)
 {
+
     ui->setupUi(this);
     //sets up the rest of the ui
     createActions();
     createMenu();
     setWindowTitle(tr("ScaleGuide: Scale Window"));
+
     ui->instructLabel->setText("Enter notes in order played (each note separated by a space): ");
+
+    QObject::connect(ui->okButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
+    QObject::connect(ui->closeButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
 
 }
 
@@ -26,11 +39,25 @@ void ScaleWindow::openHelp() {
 
 }
 
-void ScaleWindow::backButtonPressed(){
 
+void ScaleWindow::buttonPressed(){
+    QPushButton *button = (QPushButton*) sender();
+    if (button->objectName() == "okButton") {
+        figureScale();
+    } else if (button->objectName() == "closeButton") {
+        mainWindow = new MainWindow;
+        mainWindow->show();
+        this->close();
+    }
 }
 
-void ScaleWindow::findKeyButtonPressed(){
+void ScaleWindow::figureScale(){
+    QString note_input = ui->inputLine->text();
+    string input = note_input.toLocal8Bit().constData();
+    istringstream iss(input);
+    vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
+
+
 
 }
 
