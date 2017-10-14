@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include <QString>
+#include <QMessageBox>
 
 using namespace std;
 
@@ -26,8 +27,12 @@ ScaleWindow::ScaleWindow(QWidget *parent) :
 
     ui->instructLabel->setText("Enter notes in order played (each note separated by a space): ");
 
-    QObject::connect(ui->okButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
+    QObject::connect(ui->okButtonK, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
     QObject::connect(ui->closeButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
+    QObject::connect(ui->okButtonM, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
+
+    QStringList list=(QStringList()<<"C"<<"C#/Db"<<"D"<<"D#/Eb"<<"E"<<"F"<<"F#/Gb"<<"G"<<"G#/Ab"<<"A"<<"A#/Bb" << "B");
+    ui->keyComboBox->addItems(list);
 
 }
 
@@ -42,22 +47,36 @@ void ScaleWindow::openHelp() {
 
 void ScaleWindow::buttonPressed(){
     QPushButton *button = (QPushButton*) sender();
-    if (button->objectName() == "okButton") {
-        figureScale();
+    if (button->objectName() == "okButtonK") {
+        figureKey();
     } else if (button->objectName() == "closeButton") {
         mainWindow = new MainWindow;
         mainWindow->show();
         this->close();
+    } else if (button->objectName() == "okButtonM") {
+        figureMode();
     }
 }
 
-void ScaleWindow::figureScale(){
+//converts notes entered into a key
+void ScaleWindow::figureKey(){
+    //convets qt string to c++ string
     QString note_input = ui->inputLine->text();
     string input = note_input.toLocal8Bit().constData();
     istringstream iss(input);
+    //converts string to a vector
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
 
+    if (notes.size() < 3) {
+        QMessageBox msgBox;
+        msgBox.setText("There needs to be more than two notes entered");
+        msgBox.exec();
+    }
 
+    vector <string> sharps{};
+}
+
+void ScaleWindow::figureMode(){
 
 }
 

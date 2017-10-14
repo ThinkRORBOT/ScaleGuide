@@ -28,7 +28,8 @@ private:
 
     void createMenu();
     void createActions();
-    void figureScale();
+    void figureKey();
+    void figureMode();
 
     QMenu *helpMenu;
     QAction *aboutAction;
