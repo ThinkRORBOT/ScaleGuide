@@ -11,7 +11,9 @@
 #include <iostream>
 #include <QString>
 #include <QMessageBox>
+#include <QRegularExpression>
 
+//remove later on, bad practise
 using namespace std;
 
 ScaleWindow::ScaleWindow(QWidget *parent) :
@@ -41,11 +43,13 @@ void ScaleWindow::openAbout() {
 }
 
 void ScaleWindow::openHelp() {
+    QMessageBox::about(this ,tr("Error"), tr("Help Menu \n Enter the notes in the scale to find out what scale they belong to. \n Try to enter the notes in order. \n Use characters \'A, B, C, D, E, F, G\' for notes and \'#, b\' for symbols \n"));
 
 }
 
 
 void ScaleWindow::buttonPressed(){
+    //handles different windows oppening from buttons pressed
     QPushButton *button = (QPushButton*) sender();
     if (button->objectName() == "okButtonK") {
         figureKey();
@@ -67,13 +71,27 @@ void ScaleWindow::figureKey(){
     //converts string to a vector
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
 
+    QRegularExpression valid_notes("[^ABCDEFG]");
+    QRegularExpression valid_tones("[#b]");
+
+    //iterates through vector making sure the notes are valid
+    for(vector<string>::iterator it = notes.begin(); it != notes.end(); ++it)
+    {
+        string temp = *it;
+        QString tempQ = QString::fromStdString(temp);
+        if(valid_notes.match(tempQ).hasMatch()) {
+            qDebug("Valid");
+        } else {
+            QMessageBox::about(this, tr("Error"), tr("Notes entered are not valid"));
+            break;
+        }
+    }
     if (notes.size() < 3) {
         QMessageBox msgBox;
         msgBox.setText("There needs to be more than two notes entered");
         msgBox.exec();
     }
 
-    vector <string> sharps{};
 }
 
 void ScaleWindow::figureMode(){
