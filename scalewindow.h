@@ -36,6 +36,9 @@ private:
     QAction *helpAction;
 
     MainWindow* mainWindow;
+    string initial_char = " ";
+
+    int i = 0;
 
 };
 

@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT       += widgets
+QT       += sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = ScaleGuide
@@ -26,11 +27,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     notewindow.cpp \
-    scalewindow.cpp
+    scalewindow.cpp \
+    dbmanager.cpp
 
 HEADERS  += mainwindow.h \
     notewindow.h \
-    scalewindow.h
+    scalewindow.h \
+    dbmanager.h
 
 FORMS    += mainwindow.ui \
     notewindow.ui \

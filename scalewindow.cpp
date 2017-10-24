@@ -1,6 +1,7 @@
 #include "scalewindow.h"
 #include "ui_scalewindow.h"
 #include "mainwindow.h"
+#include "dbmanager.h"
 #include <QTCore>
 #include <QTGui>
 #include <QWidget>
@@ -62,6 +63,11 @@ void ScaleWindow::buttonPressed(){
     }
 }
 
+void ScaleWindow::returnKey(string *note_arr){
+    DbManager = new DbManager();
+
+}
+
 //converts notes entered into a key
 void ScaleWindow::figureKey(){
     //convets qt string to c++ string
@@ -71,9 +77,14 @@ void ScaleWindow::figureKey(){
     //converts string to a vector
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
 
-    QRegularExpression valid_notes("[^ABCDEFG]");
-    QRegularExpression valid_tones("[#b]");
+    //makes sure the notes entered are valid in terms of syntax
+    QRegularExpression valid_notes("^[ABCDEFG]#?$");
 
+    string notes_arr[notes.size()] = {};
+    initial_char = " ";
+
+    i = 0;
+    bool valid = true;
     //iterates through vector making sure the notes are valid
     for(vector<string>::iterator it = notes.begin(); it != notes.end(); ++it)
     {
@@ -81,11 +92,25 @@ void ScaleWindow::figureKey(){
         QString tempQ = QString::fromStdString(temp);
         if(valid_notes.match(tempQ).hasMatch()) {
             qDebug("Valid");
+            if (i == 0) {
+                initial_char = temp;
+            }
+
+            notes_arr[i] = temp;
+
         } else {
             QMessageBox::about(this, tr("Error"), tr("Notes entered are not valid"));
+            valid = false;
             break;
         }
+
+        i++;
     }
+
+    if (valid) {
+        returnKey(note_arr);
+    }
+
     if (notes.size() < 3) {
         QMessageBox msgBox;
         msgBox.setText("There needs to be more than two notes entered");
