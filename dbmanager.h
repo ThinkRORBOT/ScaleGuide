@@ -4,14 +4,15 @@
 #include <QVector>
 #include <QSqlDatabase>
 #include <QString>
-
+#include <vector>
+#include <string>
 class DbManager
 {
 public:
     DbManager();
 
-    QVector<QString> returnScales();
-    QVector<QString> returnNotes();
+    std::vector<std::string> returnScales(int code);
+    QVector<QString> returnNotes(std::string *note_arr);
 
 private:
     QSqlDatabase db;

@@ -35,11 +35,14 @@ background-color:grey</string>
      <rect>
       <x>150</x>
       <y>0</y>
-      <width>931</width>
+      <width>1011</width>
       <height>571</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetMinimumSize</enum>
+     </property>
      <item>
       <widget class="QPushButton" name="scaleButton">
        <property name="sizePolicy">

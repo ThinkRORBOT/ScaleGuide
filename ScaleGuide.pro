@@ -28,17 +28,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     notewindow.cpp \
     scalewindow.cpp \
-    dbmanager.cpp
+    dbmanager.cpp \
+    showscale.cpp
 
 HEADERS  += mainwindow.h \
     notewindow.h \
     scalewindow.h \
-    dbmanager.h
+    dbmanager.h \
+    showscale.h
 
 FORMS    += mainwindow.ui \
     notewindow.ui \
-    scalewindow.ui
+    scalewindow.ui \
+    showscale.ui
 
-RESOURCES +=
+RESOURCES += \
+    resources.qrc
 
 DISTFILES +=

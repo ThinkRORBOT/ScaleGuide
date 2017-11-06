@@ -1,8 +1,12 @@
 #ifndef SCALEWINDOW_H
 #define SCALEWINDOW_H
 
+#include "showscale.h"
+
 #include <QMainWindow>
 #include <QLabel>
+#include <string>
+#include <vector>
 class MainWindow;
 
 namespace Ui {
@@ -30,13 +34,17 @@ private:
     void createActions();
     void figureKey();
     void figureMode();
+    void openNoteWindowOption(std::vector<std::string> &finalresult);
+    std::vector<std::string> returnKey(std::vector<std::string> &note_arr);
 
     QMenu *helpMenu;
     QAction *aboutAction;
     QAction *helpAction;
 
     MainWindow* mainWindow;
-    string initial_char = " ";
+    ShowScale* showScale;
+    std::string initial_char = " ";
+    std::string noteReference[14] = {};
 
     int i = 0;
 

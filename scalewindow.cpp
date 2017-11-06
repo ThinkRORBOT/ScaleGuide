@@ -2,6 +2,7 @@
 #include "ui_scalewindow.h"
 #include "mainwindow.h"
 #include "dbmanager.h"
+#include "showscale.h"
 #include <QTCore>
 #include <QTGui>
 #include <QWidget>
@@ -11,11 +12,15 @@
 #include <vector>
 #include <iostream>
 #include <QString>
+#include <QVector>
 #include <QMessageBox>
 #include <QRegularExpression>
 
 //remove later on, bad practise
 using namespace std;
+
+//converts integer returned from calculations to scale
+string noteReference[12] = {"C", "D", "E", "F", "G", "A", "B", "C#", "D#", "F#", "G#", "A#"};
 
 ScaleWindow::ScaleWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -63,9 +68,35 @@ void ScaleWindow::buttonPressed(){
     }
 }
 
-void ScaleWindow::returnKey(string *note_arr){
-    DbManager = new DbManager();
+//gets the data from the database and appends scales to a vector
+vector<string> ScaleWindow::returnKey(vector<string> &note_arr){
+    DbManager dbmanager;
+    vector<string> scales = {};
+    vector<string> scalesReturn = {};
 
+    //goes through each possible scale
+    for (int m = 1; m < 12; m++) {
+        scalesReturn = dbmanager.returnScales(m);
+        sort(note_arr.begin(), note_arr.end());
+        sort(scalesReturn.begin(), scalesReturn.end());
+        if(includes(scalesReturn.begin(), scalesReturn.end(), note_arr.begin(), note_arr.end())) {
+            qDebug("Success");
+            scales.push_back(noteReference[m - 1]);
+        }
+        if (scales[0] == "NDB") {
+            QMessageBox::critical(this, "Error", "Unable to open database, please install application");
+            break;
+        }
+
+    }
+    return scales;
+
+}
+
+void ScaleWindow::openNoteWindowOption(vector<string> &finalresult){
+    showScale = new ShowScale();
+    showScale->show();
+    showScale->populateList(finalresult);
 }
 
 //converts notes entered into a key
@@ -77,10 +108,17 @@ void ScaleWindow::figureKey(){
     //converts string to a vector
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
 
+    //makes sure the user has entered more than 3 notes
+    if (notes.size() < 3) {
+        QMessageBox msgBox;
+        msgBox.setText("There needs to be more than two notes entered");
+        msgBox.exec();
+    }
+
     //makes sure the notes entered are valid in terms of syntax
     QRegularExpression valid_notes("^[ABCDEFG]#?$");
 
-    string notes_arr[notes.size()] = {};
+    //string notes_arr[notes.size()] = {};
     initial_char = " ";
 
     i = 0;
@@ -96,7 +134,7 @@ void ScaleWindow::figureKey(){
                 initial_char = temp;
             }
 
-            notes_arr[i] = temp;
+            //notes_arr[i] = temp;
 
         } else {
             QMessageBox::about(this, tr("Error"), tr("Notes entered are not valid"));
@@ -107,15 +145,13 @@ void ScaleWindow::figureKey(){
         i++;
     }
 
+    vector<string> outputString{};
     if (valid) {
-        returnKey(note_arr);
+        outputString = returnKey(notes);
     }
 
-    if (notes.size() < 3) {
-        QMessageBox msgBox;
-        msgBox.setText("There needs to be more than two notes entered");
-        msgBox.exec();
-    }
+    openNoteWindowOption(outputString);
+
 
 }
 
