@@ -7,6 +7,8 @@
 #include <QLabel>
 #include <string>
 #include <vector>
+#include <QVector>
+#include <QString>
 class MainWindow;
 
 namespace Ui {
@@ -34,8 +36,8 @@ private:
     void createActions();
     void figureKey();
     void figureMode();
-    void openNoteWindowOption(std::vector<std::string> &finalresult);
-    std::vector<std::string> returnKey(std::vector<std::string> &note_arr);
+    void openNoteWindowOption(QVector<QString> &finalresult);
+    QVector<QString> returnKey(QVector<QString> &note_arr);
 
     QMenu *helpMenu;
     QAction *aboutAction;
@@ -44,7 +46,7 @@ private:
     MainWindow* mainWindow;
     ShowScale* showScale;
     std::string initial_char = " ";
-    std::string noteReference[14] = {};
+    QString noteReference[14] = {};
 
     int i = 0;
 

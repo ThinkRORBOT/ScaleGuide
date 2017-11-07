@@ -11,8 +11,8 @@ class DbManager
 public:
     DbManager();
 
-    std::vector<std::string> returnScales(int code);
-    QVector<QString> returnNotes(std::string *note_arr);
+    QVector<QString> returnScales(int code);
+    QVector<QString> returnNotes(QString *note_arr);
 
 private:
     QSqlDatabase db;

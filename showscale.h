@@ -17,7 +17,11 @@ public:
     explicit ShowScale(QWidget *parent = 0);
     ~ShowScale();
 
-    void populateList(std::vector<std::string> &notes);
+    void populateList(QVector<QString> &notes);
+
+private slots:
+    void cancel();
+    void openNoteWindow(QString scale);
 
 private:
     Ui::ShowScale *ui;

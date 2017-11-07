@@ -33,7 +33,7 @@ DbManager::DbManager()
 }
 
 //returns a set of notes of a certain scale
-QVector<QString> DbManager::returnNotes(std::string *scale_arr){
+QVector<QString> DbManager::returnNotes(QString *scale_arr){
     QVector<QString> notes(14);
     if(!db.open()) {
         notes.append("NDB");
@@ -46,8 +46,8 @@ QVector<QString> DbManager::returnNotes(std::string *scale_arr){
 
 //todo: get sqlite data into a vector and see if one vector contains another, change qvectors to vectors
 //returns a scale for a given set of notes.
-std::vector<std::string> DbManager::returnScales(int code){
-    std::vector<std::string> scales(7);
+QVector<QString> DbManager::returnScales(int code){
+    QVector<QString> scales(7);
     if(!db.open()) {
         scales[0] = "NDB";
         return scales;
@@ -68,7 +68,7 @@ std::vector<std::string> DbManager::returnScales(int code){
     //todo, find what is wrong with sql query
     while (query.next()) {
         QString response = query.value(0).toString();
-        scales[i] = response.toStdString();
+        scales[i] = response;
         qDebug() << response;
         i++;
     }

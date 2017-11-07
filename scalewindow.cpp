@@ -19,8 +19,7 @@
 //remove later on, bad practise
 using namespace std;
 
-//converts integer returned from calculations to scale
-string noteReference[12] = {"C", "D", "E", "F", "G", "A", "B", "C#", "D#", "F#", "G#", "A#"};
+
 
 ScaleWindow::ScaleWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -69,10 +68,12 @@ void ScaleWindow::buttonPressed(){
 }
 
 //gets the data from the database and appends scales to a vector
-vector<string> ScaleWindow::returnKey(vector<string> &note_arr){
+QVector<QString> ScaleWindow::returnKey(QVector<QString> &note_arr){
     DbManager dbmanager;
-    vector<string> scales = {};
-    vector<string> scalesReturn = {};
+    QVector<QString> scales = {};
+    QVector<QString> scalesReturn = {};
+    //converts integer returned from calculations to scale
+    QString noteReference[12] = {"C", "D", "E", "F", "G", "A", "B", "C#", "D#", "F#", "G#", "A#"};
 
     //goes through each possible scale
     for (int m = 1; m < 12; m++) {
@@ -82,6 +83,7 @@ vector<string> ScaleWindow::returnKey(vector<string> &note_arr){
         if(includes(scalesReturn.begin(), scalesReturn.end(), note_arr.begin(), note_arr.end())) {
             qDebug("Success");
             scales.push_back(noteReference[m - 1]);
+            qDebug(noteReference[m-1].toLatin1());
         }
         if (scales[0] == "NDB") {
             QMessageBox::critical(this, "Error", "Unable to open database, please install application");
@@ -93,9 +95,11 @@ vector<string> ScaleWindow::returnKey(vector<string> &note_arr){
 
 }
 
-void ScaleWindow::openNoteWindowOption(vector<string> &finalresult){
+//opens window showscale
+void ScaleWindow::openNoteWindowOption(QVector<QString> &finalresult){
     showScale = new ShowScale();
     showScale->show();
+    //populated the listview
     showScale->populateList(finalresult);
 }
 
@@ -105,9 +109,10 @@ void ScaleWindow::figureKey(){
     QString note_input = ui->inputLine->text();
     string input = note_input.toLocal8Bit().constData();
     istringstream iss(input);
-    //converts string to a vector
+    //converts string to a vector separated by a space
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
-
+    //want to convert from vector to qvector to make things easier later on
+    QVector <QString> qnotes;
     //makes sure the user has entered more than 3 notes
     if (notes.size() < 3) {
         QMessageBox msgBox;
@@ -128,6 +133,7 @@ void ScaleWindow::figureKey(){
     {
         string temp = *it;
         QString tempQ = QString::fromStdString(temp);
+        qnotes.push_back(tempQ);
         if(valid_notes.match(tempQ).hasMatch()) {
             qDebug("Valid");
             if (i == 0) {
@@ -145,11 +151,12 @@ void ScaleWindow::figureKey(){
         i++;
     }
 
-    vector<string> outputString{};
+    QVector<QString> outputString{};
     if (valid) {
-        outputString = returnKey(notes);
+        outputString = returnKey(qnotes);
     }
 
+    //calls the function to open anotehr window
     openNoteWindowOption(outputString);
 
 
