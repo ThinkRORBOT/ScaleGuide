@@ -21,6 +21,7 @@ class ScaleWindow : public QMainWindow
 
 public:
     explicit ScaleWindow(QWidget *parent = 0);
+    QString initial_char = " ";
     ~ScaleWindow();
 
 private slots:
@@ -38,6 +39,7 @@ private:
     void figureMode();
     void openNoteWindowOption(QVector<QString> &finalresult);
     QVector<QString> returnKey(QVector<QString> &note_arr);
+    QVector<QString> getTextBox(int textbox);
 
     QMenu *helpMenu;
     QAction *aboutAction;
@@ -45,7 +47,6 @@ private:
 
     MainWindow* mainWindow;
     ShowScale* showScale;
-    std::string initial_char = " ";
     QString noteReference[14] = {};
 
     int i = 0;

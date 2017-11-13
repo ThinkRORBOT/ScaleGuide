@@ -15,6 +15,7 @@
 #include <QVector>
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <algorithm>
 
 //remove later on, bad practise
 using namespace std;
@@ -33,6 +34,8 @@ ScaleWindow::ScaleWindow(QWidget *parent) :
     setWindowTitle(tr("ScaleGuide: Scale Window"));
 
     ui->instructLabel->setText("Enter notes in order played (each note separated by a space): ");
+
+    ui->centralwidget->setLayout(ui->gridLayout);
 
     QObject::connect(ui->okButtonK, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
     QObject::connect(ui->closeButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
@@ -71,25 +74,28 @@ void ScaleWindow::buttonPressed(){
 QVector<QString> ScaleWindow::returnKey(QVector<QString> &note_arr){
     DbManager dbmanager;
     QVector<QString> scales = {};
-    QVector<QString> scalesReturn = {};
     //converts integer returned from calculations to scale
-    QString noteReference[12] = {"C", "D", "E", "F", "G", "A", "B", "C#", "D#", "F#", "G#", "A#"};
+    QString noteReference[12] = {"C Major", "D Major", "E Major", "F Major", "G Major", "A Major", "B Major", "C# Major", "D# Major", "F# Major", "G# Major", "A# Major"};
+    QString noteReferenceM[12] = {"A Minor", "B Minor", "C# Minor", "D Minor", "E Minor", "F# Minor", "G# Minor", "A# Minor", "C Minor", "D# Minor", "F Minor", "G Minor"};
 
     //goes through each possible scale
     for (int m = 1; m < 12; m++) {
+
+        QVector<QString> scalesReturn = {};
         scalesReturn = dbmanager.returnScales(m);
+        //sorts the vectors and check that cone vector contails the other
         sort(note_arr.begin(), note_arr.end());
         sort(scalesReturn.begin(), scalesReturn.end());
+
         if(includes(scalesReturn.begin(), scalesReturn.end(), note_arr.begin(), note_arr.end())) {
             qDebug("Success");
-            scales.push_back(noteReference[m - 1]);
-            qDebug(noteReference[m-1].toLatin1());
+            scales.push_back(noteReference[m - 1] + "/" + noteReferenceM[m - 1]);
         }
-        if (scales[0] == "NDB") {
+
+        if (scalesReturn[0] == "NDB") {
             QMessageBox::critical(this, "Error", "Unable to open database, please install application");
             break;
         }
-
     }
     return scales;
 
@@ -100,45 +106,71 @@ void ScaleWindow::openNoteWindowOption(QVector<QString> &finalresult){
     showScale = new ShowScale();
     showScale->show();
     //populated the listview
-    showScale->populateList(finalresult);
+    showScale->populateList(finalresult, initial_char);
 }
 
-//converts notes entered into a key
-void ScaleWindow::figureKey(){
+
+//get the writing inside of the text box and returns it as a qvector
+QVector<QString> ScaleWindow::getTextBox(int textbox) {
     //convets qt string to c++ string
-    QString note_input = ui->inputLine->text();
+    QString note_input;
+    if (textbox == 0) {
+        note_input = ui->inputLine->text();
+    }
+    else if (textbox == 1) {
+        note_input = ui->modeTextInput->text();
+    }
     string input = note_input.toLocal8Bit().constData();
     istringstream iss(input);
+
+    QVector<QString> notesEntered;
+
     //converts string to a vector separated by a space
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
-    //want to convert from vector to qvector to make things easier later on
-    QVector <QString> qnotes;
     //makes sure the user has entered more than 3 notes
-    if (notes.size() < 3) {
+    if (notes.size() < 3 && textbox == 0) {
         QMessageBox msgBox;
         msgBox.setText("There needs to be more than two notes entered");
+        QVector<QString> error = {" "};
         msgBox.exec();
+        return error;
+    }
+    else if(notes.size() < 7 && textbox == 1) {
+        QMessageBox msgBox;
+        msgBox.setText("There needs to be more than six notes entered");
+        QVector<QString> error = {" "};
+        msgBox.exec();
+        return error;
     }
 
     //makes sure the notes entered are valid in terms of syntax
-    QRegularExpression valid_notes("^[ABCDEFG]#?$");
+    QRegularExpression valid_notes("^[ABCDEFG][#b]?$");
 
     //string notes_arr[notes.size()] = {};
-    initial_char = " ";
 
     i = 0;
     bool valid = true;
     //iterates through vector making sure the notes are valid
     for(vector<string>::iterator it = notes.begin(); it != notes.end(); ++it)
     {
+
         string temp = *it;
+
+        if (*it == "Cb") {*it = "B";}
+        if (*it == "Db") {*it = "C#";}
+        if (*it == "Eb") {*it = "D#";}
+        if (*it == "E#") {*it = "F";}
+        if (*it == "Fb") {*it = "E";}
+        if (*it == "Gb") {*it = "F#";}
+        if (*it == "Ab") {*it = "G#";}
+        if (*it == "Bb") {*it = "A#";}
+        if (*it == "B#") {*it = "C";}
+
+        notesEntered.push_back(QString::fromStdString(*it));
+
         QString tempQ = QString::fromStdString(temp);
-        qnotes.push_back(tempQ);
         if(valid_notes.match(tempQ).hasMatch()) {
             qDebug("Valid");
-            if (i == 0) {
-                initial_char = temp;
-            }
 
             //notes_arr[i] = temp;
 
@@ -150,20 +182,113 @@ void ScaleWindow::figureKey(){
 
         i++;
     }
-
-    QVector<QString> outputString{};
-    if (valid) {
-        outputString = returnKey(qnotes);
+    if (valid){
+        return notesEntered;
+    } else {
+        QVector<QString> error = {" "};
+        return error;
     }
 
-    //calls the function to open anotehr window
-    openNoteWindowOption(outputString);
+}
+
+//converts notes entered into a key
+void ScaleWindow::figureKey(){
+
+    //want to convert from vector to qvector to make things easier later on
+    QVector <QString> qnotes;
+
+    qnotes = getTextBox(0);
+    initial_char = " ";
+    initial_char = qnotes[0];
+
+    QVector<QString> outputString{};
+
+    //variable to check whether the input text if valid
+    bool valid = false;
+
+    if (qnotes.size() > 1) {
+        valid = true;
+    }
+
+    if (valid) {
+        outputString = returnKey(qnotes);
+
+        //calls the function to open another window
+        openNoteWindowOption(outputString);
+
+    }
+
 
 
 }
 
+//by tying in a bunch of notes, find out which mode the set of notes is in
 void ScaleWindow::figureMode(){
+    DbManager dbmanager;
+    QString curr_key = ui->keyComboBox->itemData(ui->keyComboBox->currentIndex()).toString();
+    int key = ui->keyComboBox->currentIndex();
+    QVector<QString> modeScaleReturn = dbmanager.returnScales(key + 1);
+    QVector<QString> textBoxScale = getTextBox(1);
+    QVector<QString> scale = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
 
+    QVector<int> scalePos;
+
+    //iterates through vector and populates int vector with position within scale
+    for (auto &it: textBoxScale) {
+        bool found = false;
+        for(int i = 0; i < scale.length(); i++){
+            if(it == scale[i]) {
+                scalePos.push_back(i);
+                found = true;
+            }
+        }
+        if (!found) {
+            QMessageBox msgBox;
+            msgBox.setText(it + " is not valid");
+            msgBox.exec();
+            break;
+        }
+
+    }
+
+    bool modeDiscovered = false;
+    //checks the scale for each of the modes
+    for (int i = 0; i < 8; i++){
+        if (i == 0 && !modeDiscovered){
+            //checks if two vectors are equal
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + " Ionian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+            }
+        }
+        if (i == 1 && !modeDiscovered){
+
+            //makes sure the notes are changed to the right notes
+            if (scalePos[2] = 0) {
+                textBoxScale[2] = scale[12];
+            } else {
+                textBoxScale[2] = scale[scalePos[2] - 1];
+            }
+            if (scalePos[6] = 0) {
+                textBoxScale[6] = scale[12];
+            } else {
+                textBoxScale[6] = scale[scalePos[6] - 1];
+            }
+
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + " Dorian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+            }
+        }
+    }
 }
 
 //sets up what the actions in the menu do

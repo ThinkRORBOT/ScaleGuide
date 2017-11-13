@@ -26,11 +26,12 @@ void ShowScale::openNoteWindow(QString scale){
 
 }
 
-void ShowScale::populateList(QVector<QString> &notes){
+void ShowScale::populateList(QVector<QString> &notes, QString rootNote){
     for (int i = 0; i < notes.size(); i++) {
         ui->scaleList->insertItem(i, notes[i]);
     }
 
+    ui->likelyLabel->setText("Root Note: " + rootNote);
 }
 
 ShowScale::~ShowScale()

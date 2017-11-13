@@ -17,7 +17,7 @@ public:
     explicit ShowScale(QWidget *parent = 0);
     ~ShowScale();
 
-    void populateList(QVector<QString> &notes);
+    void populateList(QVector<QString> &notes, QString rootNote);
 
 private slots:
     void cancel();

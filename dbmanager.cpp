@@ -75,5 +75,4 @@ QVector<QString> DbManager::returnScales(int code){
 
     return scales;
 
-
 }
