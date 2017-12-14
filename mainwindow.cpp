@@ -34,6 +34,7 @@ void MainWindow::setButtons(){
 
     QObject::connect(ui->scaleButton, SIGNAL(clicked(bool)), SLOT(handleButton()));
     QObject::connect(ui->noteButton, SIGNAL(clicked(bool)), SLOT(handleButton()));
+    QObject::connect(ui->chordButton, SIGNAL(clicked(bool)), SLOT(handleButton()));
 
 }
 
@@ -47,6 +48,10 @@ void MainWindow::handleButton() {
     } else if (button->objectName() == "scaleButton") {
         newScaleWindow = new ScaleWindow();
         newScaleWindow->show();
+        this->close();
+    } else if (button->objectName() == "chordButton") {
+        newChordWindow = new ChordWindow();
+        newChordWindow->show();
         this->close();
     }
 

@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include "notewindow.h"
 #include "scalewindow.h"
+#include "chordwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -40,6 +41,7 @@ private:
 
     NoteWindow *newNoteWindow;
     ScaleWindow *newScaleWindow;
+    ChordWindow *newChordWindow;
 
 };
 

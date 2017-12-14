@@ -101,6 +101,31 @@ opacity: 0.7;}
        </property>
       </widget>
      </item>
+     <item>
+      <widget class="QPushButton" name="chordButton">
+       <property name="font">
+        <font>
+         <pointsize>32</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+background-color:rgb(40,240, 0);
+border:1px solid gray;
+color: white;
+opacity:0.7;
+
+}
+
+QPushButton:hover {background-color:rgb(255, 0 , 0);
+color: white;
+opacity: 0.7;}</string>
+       </property>
+       <property name="text">
+        <string>Find Chord</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
   </widget>

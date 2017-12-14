@@ -128,6 +128,13 @@ QVector<QString> ScaleWindow::getTextBox(int textbox) {
     //converts string to a vector separated by a space
     vector <string> notes{istream_iterator<string>{iss}, istream_iterator<string>{}};
     //makes sure the user has entered more than 3 notes
+    if(notes.size() > 7){
+        QMessageBox msgBox;
+        msgBox.setText("There needs to be less than 8 notes entered");
+        QVector<QString> error = {" "};
+        msgBox.exec();
+        return error;
+    }
     if (notes.size() < 3 && textbox == 0) {
         QMessageBox msgBox;
         msgBox.setText("There needs to be more than two notes entered");
@@ -225,8 +232,9 @@ void ScaleWindow::figureKey(){
 //by tying in a bunch of notes, find out which mode the set of notes is in
 void ScaleWindow::figureMode(){
     DbManager dbmanager;
-    QString curr_key = ui->keyComboBox->itemData(ui->keyComboBox->currentIndex()).toString();
+
     int key = ui->keyComboBox->currentIndex();
+    QString curr_key = ui->keyComboBox->currentText();
     QVector<QString> modeScaleReturn = dbmanager.returnScales(key + 1);
     QVector<QString> textBoxScale = getTextBox(1);
     QVector<QString> scale = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
@@ -253,7 +261,7 @@ void ScaleWindow::figureMode(){
 
     bool modeDiscovered = false;
     //checks the scale for each of the modes
-    for (int i = 0; i < 8; i++){
+    for (int i = 0; i < 7; i++){
         if (i == 0 && !modeDiscovered){
             //checks if two vectors are equal
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
@@ -263,6 +271,7 @@ void ScaleWindow::figureMode(){
                 QVector<QString> mode = {curr_key + " Ionian"};
                 openNoteWindowOption(mode);
                 modeDiscovered = true;
+                return;
             }
         }
         if (i == 1 && !modeDiscovered){
@@ -286,7 +295,162 @@ void ScaleWindow::figureMode(){
                 QVector<QString> mode = {curr_key + " Dorian"};
                 openNoteWindowOption(mode);
                 modeDiscovered = true;
+                return;
             }
+        }
+
+        if (i == 2 && !modeDiscovered){
+
+            //makes sure the notes are changed to the right notes
+            if (scalePos[1] = 0) {
+                textBoxScale[1] = scale[12];
+            } else {
+                textBoxScale[1] = scale[scalePos[1] - 1];
+            }
+            if (scalePos[2] = 0) {
+                textBoxScale[2] = scale[12];
+            } else {
+                textBoxScale[2] = scale[scalePos[2] - 1];
+            }
+            if (scalePos[5] = 0) {
+                textBoxScale[5] = scale[12];
+            } else {
+                textBoxScale[5] = scale[scalePos[5] - 1];
+            }
+
+            if (scalePos[6] = 0) {
+                textBoxScale[6] = scale[12];
+            } else {
+                textBoxScale[6] = scale[scalePos[6] - 1];
+            }
+
+
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + " Phrygian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+                return;
+            }
+        }
+
+        if (i == 3 && !modeDiscovered){
+
+            //makes sure the notes are changed to the right notes
+            if (scalePos[3] = 7) {
+                textBoxScale[3] = scale[0];
+            } else {
+                textBoxScale[3] = scale[scalePos[3] + 1];
+            }
+
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + "  Lydian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+                return;
+            }
+        }
+
+        if (i == 4 && !modeDiscovered){
+
+            //makes sure the notes are changed to the right notes
+            if (scalePos[6] = 0) {
+                textBoxScale[6] = scale[12];
+            } else {
+                textBoxScale[6] = scale[scalePos[6] - 1];
+            }
+
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + " Mixolydian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+                return;
+            }
+        }
+
+        if (i == 5 && !modeDiscovered){
+
+            //makes sure the notes are changed to the right notes
+            if (scalePos[1] = 0) {
+                textBoxScale[1] = scale[12];
+            } else {
+                textBoxScale[1] = scale[scalePos[1] - 1];
+            }
+            if (scalePos[5] = 0) {
+                textBoxScale[5] = scale[12];
+            } else {
+                textBoxScale[5] = scale[scalePos[5] - 1];
+            }
+            if (scalePos[6] = 0) {
+                textBoxScale[6] = scale[12];
+            } else {
+                textBoxScale[6] = scale[scalePos[6] - 1];
+            }
+
+
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + " Aeolian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+                return;
+            }
+        }
+        if (i == 6 && !modeDiscovered){
+
+            //makes sure the notes are changed to the right notes
+            if (scalePos[1] = 0) {
+                textBoxScale[1] = scale[12];
+            } else {
+                textBoxScale[1] = scale[scalePos[1] - 1];
+            }
+            if (scalePos[2] = 0) {
+                textBoxScale[2] = scale[12];
+            } else {
+                textBoxScale[2] = scale[scalePos[2] - 1];
+            }
+            if (scalePos[6] = 0) {
+                textBoxScale[6] = scale[12];
+            } else {
+                textBoxScale[6] = scale[scalePos[6] - 1];
+            }
+            if (scalePos[5] = 0) {
+                textBoxScale[5] = scale[12];
+            } else {
+                textBoxScale[5] = scale[scalePos[5] - 1];
+            }
+            if (scalePos[4] = 0) {
+                textBoxScale[4] = scale[12];
+            } else {
+                textBoxScale[4] = scale[scalePos[4] - 1];
+            }
+
+
+            sort(modeScaleReturn.begin(), modeScaleReturn.end());
+            sort(textBoxScale.begin(), textBoxScale.end());
+
+            if(modeScaleReturn == textBoxScale){
+                QVector<QString> mode = {curr_key + " Aeolian"};
+                openNoteWindowOption(mode);
+                modeDiscovered = true;
+                return;
+            }
+        }
+        if(!modeDiscovered){
+            QMessageBox msgBox;
+            msgBox.setText("No Suitable mode found");
+            msgBox.exec();
+            return;
         }
     }
 }

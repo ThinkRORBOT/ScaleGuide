@@ -17,6 +17,14 @@ public:
 
 private:
     Ui::NoteWindow *ui;
+    QMenu *helpMenu;
+    QAction *aboutAction;
+    QAction *helpAction;
+
+    void createMenu();
+    void createActions();
+    void openAbout();
+    void openHelp();
 };
 
 #endif // NOTEWINDOW_H

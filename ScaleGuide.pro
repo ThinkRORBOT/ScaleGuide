@@ -29,18 +29,21 @@ SOURCES += main.cpp\
     notewindow.cpp \
     scalewindow.cpp \
     dbmanager.cpp \
-    showscale.cpp
+    showscale.cpp \
+    chordwindow.cpp
 
 HEADERS  += mainwindow.h \
     notewindow.h \
     scalewindow.h \
     dbmanager.h \
-    showscale.h
+    showscale.h \
+    chordwindow.h
 
 FORMS    += mainwindow.ui \
     notewindow.ui \
     scalewindow.ui \
-    showscale.ui
+    showscale.ui \
+    chordwindow.ui
 
 RESOURCES += \
     resources.qrc
