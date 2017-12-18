@@ -6,13 +6,14 @@
 #include<QString>
 #include<QTCore>
 #include<QTGui>
+#include<QMessageBox>
 
 ShowScale::ShowScale(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::ShowScale)
 {
     ui->setupUi(this);
-    QObject::connect(ui->noteButton, SIGNAL(clicked(bool)), SLOT(openNoteWindow(QString scale)));
+    QObject::connect(ui->noteButton, SIGNAL(clicked(bool)), SLOT(openNoteWindow()));
     QObject::connect(ui->cancelButton, SIGNAL(clicked(bool)), SLOT(cancel()));
 
 }
@@ -22,7 +23,20 @@ void ShowScale::cancel(){
 
 }
 
-void ShowScale::openNoteWindow(QString scale){
+void ShowScale::openNoteWindow(){
+    QString scale = "";
+    if (ui->scaleList->currentItem()->text() != ""){
+        scale = ui->scaleList->currentItem()->text();
+        if (scale.length() != 1) {
+            scale.truncate(2);
+        }
+    } else {
+         QMessageBox::about(this, tr("Error"), tr("Please select a scale first"));
+         return;
+    }
+    showFretBoard = new ShowFretBoard();
+    showFretBoard->show();
+    showFretBoard->getInfo(scale, "Major");
 
 }
 

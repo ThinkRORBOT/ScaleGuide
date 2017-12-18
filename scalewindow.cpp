@@ -277,12 +277,12 @@ void ScaleWindow::figureMode(){
         if (i == 1 && !modeDiscovered){
 
             //makes sure the notes are changed to the right notes
-            if (scalePos[2] = 0) {
+            if (scalePos[2] == 0) {
                 textBoxScale[2] = scale[12];
             } else {
                 textBoxScale[2] = scale[scalePos[2] - 1];
             }
-            if (scalePos[6] = 0) {
+            if (scalePos[6] == 0) {
                 textBoxScale[6] = scale[12];
             } else {
                 textBoxScale[6] = scale[scalePos[6] - 1];
@@ -302,23 +302,23 @@ void ScaleWindow::figureMode(){
         if (i == 2 && !modeDiscovered){
 
             //makes sure the notes are changed to the right notes
-            if (scalePos[1] = 0) {
+            if (scalePos[1] == 0) {
                 textBoxScale[1] = scale[12];
             } else {
                 textBoxScale[1] = scale[scalePos[1] - 1];
             }
-            if (scalePos[2] = 0) {
+            if (scalePos[2] == 0) {
                 textBoxScale[2] = scale[12];
             } else {
-                textBoxScale[2] = scale[scalePos[2] - 1];
+                textBoxScale[2] == scale[scalePos[2] - 1];
             }
-            if (scalePos[5] = 0) {
+            if (scalePos[5] == 0) {
                 textBoxScale[5] = scale[12];
             } else {
                 textBoxScale[5] = scale[scalePos[5] - 1];
             }
 
-            if (scalePos[6] = 0) {
+            if (scalePos[6] == 0) {
                 textBoxScale[6] = scale[12];
             } else {
                 textBoxScale[6] = scale[scalePos[6] - 1];
@@ -339,7 +339,7 @@ void ScaleWindow::figureMode(){
         if (i == 3 && !modeDiscovered){
 
             //makes sure the notes are changed to the right notes
-            if (scalePos[3] = 7) {
+            if (scalePos[3] == 7) {
                 textBoxScale[3] = scale[0];
             } else {
                 textBoxScale[3] = scale[scalePos[3] + 1];
@@ -359,7 +359,7 @@ void ScaleWindow::figureMode(){
         if (i == 4 && !modeDiscovered){
 
             //makes sure the notes are changed to the right notes
-            if (scalePos[6] = 0) {
+            if (scalePos[6] == 0) {
                 textBoxScale[6] = scale[12];
             } else {
                 textBoxScale[6] = scale[scalePos[6] - 1];
@@ -379,17 +379,17 @@ void ScaleWindow::figureMode(){
         if (i == 5 && !modeDiscovered){
 
             //makes sure the notes are changed to the right notes
-            if (scalePos[1] = 0) {
+            if (scalePos[1] == 0) {
                 textBoxScale[1] = scale[12];
             } else {
                 textBoxScale[1] = scale[scalePos[1] - 1];
             }
-            if (scalePos[5] = 0) {
+            if (scalePos[5] == 0) {
                 textBoxScale[5] = scale[12];
             } else {
                 textBoxScale[5] = scale[scalePos[5] - 1];
             }
-            if (scalePos[6] = 0) {
+            if (scalePos[6] == 0) {
                 textBoxScale[6] = scale[12];
             } else {
                 textBoxScale[6] = scale[scalePos[6] - 1];
@@ -409,27 +409,27 @@ void ScaleWindow::figureMode(){
         if (i == 6 && !modeDiscovered){
 
             //makes sure the notes are changed to the right notes
-            if (scalePos[1] = 0) {
+            if (scalePos[1] == 0) {
                 textBoxScale[1] = scale[12];
             } else {
                 textBoxScale[1] = scale[scalePos[1] - 1];
             }
-            if (scalePos[2] = 0) {
+            if (scalePos[2] == 0) {
                 textBoxScale[2] = scale[12];
             } else {
                 textBoxScale[2] = scale[scalePos[2] - 1];
             }
-            if (scalePos[6] = 0) {
+            if (scalePos[6] == 0) {
                 textBoxScale[6] = scale[12];
             } else {
                 textBoxScale[6] = scale[scalePos[6] - 1];
             }
-            if (scalePos[5] = 0) {
+            if (scalePos[5] == 0) {
                 textBoxScale[5] = scale[12];
             } else {
                 textBoxScale[5] = scale[scalePos[5] - 1];
             }
-            if (scalePos[4] = 0) {
+            if (scalePos[4] == 0) {
                 textBoxScale[4] = scale[12];
             } else {
                 textBoxScale[4] = scale[scalePos[4] - 1];

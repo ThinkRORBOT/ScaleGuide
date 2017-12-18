@@ -2,6 +2,8 @@
 #define NOTEWINDOW_H
 
 #include <QMainWindow>
+#include "showfretboard.h"
+class MainWindow;
 
 namespace Ui {
 class NoteWindow;
@@ -15,16 +17,22 @@ public:
     explicit NoteWindow(QWidget *parent = 0);
     ~NoteWindow();
 
+private slots:
+    void buttonPressed();
+
+    void openAbout();
+    void openHelp();
+
 private:
     Ui::NoteWindow *ui;
     QMenu *helpMenu;
     QAction *aboutAction;
     QAction *helpAction;
+    MainWindow *mainWindow;
+    ShowFretBoard *showFretBoard;
 
     void createMenu();
     void createActions();
-    void openAbout();
-    void openHelp();
 };
 
 #endif // NOTEWINDOW_H

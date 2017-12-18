@@ -30,20 +30,23 @@ SOURCES += main.cpp\
     scalewindow.cpp \
     dbmanager.cpp \
     showscale.cpp \
-    chordwindow.cpp
+    chordwindow.cpp \
+    showfretboard.cpp
 
 HEADERS  += mainwindow.h \
     notewindow.h \
     scalewindow.h \
     dbmanager.h \
     showscale.h \
-    chordwindow.h
+    chordwindow.h \
+    showfretboard.h
 
 FORMS    += mainwindow.ui \
     notewindow.ui \
     scalewindow.ui \
     showscale.ui \
-    chordwindow.ui
+    chordwindow.ui \
+    showfretboard.ui
 
 RESOURCES += \
     resources.qrc

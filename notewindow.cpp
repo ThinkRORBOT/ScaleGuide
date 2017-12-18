@@ -20,6 +20,7 @@ NoteWindow::NoteWindow(QWidget *parent) :
     QObject::connect(ui->cancelButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
     QObject::connect(ui->okButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
 
+    //adds information to the combo boxes
     QStringList list=(QStringList()<<"C"<<"C#/Db"<<"D"<<"D#/Eb"<<"E"<<"F"<<"F#/Gb"<<"G"<<"G#/Ab"<<"A"<<"A#/Bb" << "B");
     ui->keyComboBox->addItems(list);
 
@@ -38,12 +39,32 @@ NoteWindow::NoteWindow(QWidget *parent) :
     ui->modeComboBox->addItems(list);
 }
 
+void NoteWindow::buttonPressed(){
+    //handles the buttons
+    QPushButton *button = (QPushButton*) sender();
+    if (button->objectName() == "okButton") {
+        showFretBoard = new ShowFretBoard();
+        showFretBoard->show();
+        //get information from combo boxes
+        QString keyTemp = ui->keyComboBox->currentText();
+        if (keyTemp.length() != 1){
+            keyTemp.truncate(2);
+        }
+        QString modeTemp = ui->modeComboBox->currentText();
+        showFretBoard->getInfo(keyTemp, modeTemp);
+    } else if (button->objectName() == "cancelButton") {
+        mainWindow = new MainWindow;
+        mainWindow->show();
+        this->close();
+    }
+}
+
 void NoteWindow::openAbout() {
     QMessageBox::about(this, tr("About Menu"), tr("Scale Guide helps you to find the right notes for the right scales. 2017"));
 }
 
 void NoteWindow::openHelp() {
-    QMessageBox::about(this ,tr("Error"), tr("Help Menu \n Enter find the key and scale type in the combo boxes below."));
+    QMessageBox::about(this ,tr("Error"), tr("Help Menu \n Enter find the key and scale type in the combo boxes below. \n Type quickly once clicked on combo box to search."));
 
 }
 

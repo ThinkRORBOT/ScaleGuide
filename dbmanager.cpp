@@ -32,20 +32,7 @@ DbManager::DbManager()
 
 }
 
-//returns a set of notes of a certain scale
-QVector<QString> DbManager::returnNotes(QString *scale_arr){
-    QVector<QString> notes(14);
-    if(!db.open()) {
-        notes.append("NDB");
-        return notes;
-    }
-
-    notes.append("temp");
-    //QSqlQuery query;
-}
-
-//todo: get sqlite data into a vector and see if one vector contains another, change qvectors to vectors
-//returns a scale for a given set of notes.
+//returns a set of notes in a certain scale
 QVector<QString> DbManager::returnScales(int code){
     QVector<QString> scales(7);
     if(!db.open()) {
@@ -54,8 +41,6 @@ QVector<QString> DbManager::returnScales(int code){
     }
 
     QSqlQuery query;
-
-
 
     QString queryString = "SELECT \"" + QString::number(code) + "\" FROM Scales";
 

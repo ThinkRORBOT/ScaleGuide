@@ -4,6 +4,7 @@
 #include<string>
 
 #include <QMainWindow>
+#include "showfretboard.h"
 
 namespace Ui {
 class ShowScale;
@@ -21,11 +22,12 @@ public:
 
 private slots:
     void cancel();
-    void openNoteWindow(QString scale);
+    void openNoteWindow();
 
 private:
     Ui::ShowScale *ui;
 
+    ShowFretBoard *showFretBoard;
 };
 
 #endif // SHOWSCALE_H

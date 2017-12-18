@@ -12,7 +12,6 @@ public:
     DbManager();
 
     QVector<QString> returnScales(int code);
-    QVector<QString> returnNotes(QString *note_arr);
 
 private:
     QSqlDatabase db;
