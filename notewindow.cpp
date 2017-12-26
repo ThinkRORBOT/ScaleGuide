@@ -21,7 +21,7 @@ NoteWindow::NoteWindow(QWidget *parent) :
     QObject::connect(ui->okButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
 
     //adds information to the combo boxes
-    QStringList list=(QStringList()<<"C"<<"C#/Db"<<"D"<<"D#/Eb"<<"E"<<"F"<<"F#/Gb"<<"G"<<"G#/Ab"<<"A"<<"A#/Bb" << "B");
+    QStringList list=(QStringList()<<"C"<<"D"<<"E"<<"F"<<"G"<<"A"<< "B" << "C#/Db"<<"D#/Eb"<<"F#/Gb"<<"G#/Ab"<<"A#/Bb");
     ui->keyComboBox->addItems(list);
 
     list = (QStringList()<< "Aeolian"<<"Altered"<<"Arabian" << "Augmented"
@@ -50,6 +50,7 @@ void NoteWindow::buttonPressed(){
         if (keyTemp.length() != 1){
             keyTemp.truncate(2);
         }
+        int keyNum = ui->keyComboBox->currentIndex();
         QString modeTemp = ui->modeComboBox->currentText();
         showFretBoard->getInfo(keyTemp, modeTemp);
     } else if (button->objectName() == "cancelButton") {

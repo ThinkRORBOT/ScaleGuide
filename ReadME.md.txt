@@ -1,1 +1,2 @@
 Application for Musicians particularly guitarists, to find out the scale a series of notes is in or a series of notes in a scale or mode
+In QT Change the fire path in dbmanager.cpp and showfretboard.cpp( in getGuitarBoard()) to appropriate paths.

@@ -2,31 +2,38 @@
     <qresource prefix="/resources">
         <file>Resources/fretboard.svg</file>
         <file>Resources/fretboardnumber.png</file>
+        <file>Resources/fretboard2.svg</file>
+        <file>Resources/fretboard3.svg</file>
+        <file>Resources/fretboard2.png</file>
+        <file>Resources/fretboard3.png</file>
     </qresource>
     <qresource prefix="/notes">
-        <file>Resources/Notes/ANnR.png</file>
-        <file>Resources/Notes/ANR.png</file>
+        <file>Resources/Notes/AnR.png</file>
+        <file>Resources/Notes/AR.png</file>
+        <file>Resources/Notes/BnR.png</file>
+        <file>Resources/Notes/BR.png</file>
+        <file>Resources/Notes/CnR.png</file>
+        <file>Resources/Notes/CR.png</file>
+        <file>Resources/Notes/DnR.png</file>
+        <file>Resources/Notes/DR.png</file>
+        <file>Resources/Notes/EnR.png</file>
+        <file>Resources/Notes/ER.png</file>
+        <file>Resources/Notes/FnR.png</file>
+        <file>Resources/Notes/FR.png</file>
+        <file>Resources/Notes/GnR.png</file>
+        <file>Resources/Notes/GR.png</file>
         <file>Resources/Notes/ASnR.png</file>
         <file>Resources/Notes/ASR.png</file>
-        <file>Resources/Notes/BNnR.png</file>
-        <file>Resources/Notes/BNR.png</file>
-        <file>Resources/Notes/CNnR.png</file>
-        <file>Resources/Notes/CNR.png</file>
         <file>Resources/Notes/CSnR.png</file>
         <file>Resources/Notes/CSR.png</file>
-        <file>Resources/Notes/DNnR.png</file>
-        <file>Resources/Notes/DNR.png</file>
         <file>Resources/Notes/DSnR.png</file>
         <file>Resources/Notes/DSR.png</file>
-        <file>Resources/Notes/ENnR.png</file>
-        <file>Resources/Notes/ENR.png</file>
-        <file>Resources/Notes/FNnR.png</file>
-        <file>Resources/Notes/FNR.png</file>
         <file>Resources/Notes/FSnR.png</file>
         <file>Resources/Notes/FSR.png</file>
-        <file>Resources/Notes/GNnR.png</file>
-        <file>Resources/Notes/GNR.png</file>
         <file>Resources/Notes/GSnR.png</file>
         <file>Resources/Notes/GSR.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>guitarboard.txt</file>
     </qresource>
 </RCC>

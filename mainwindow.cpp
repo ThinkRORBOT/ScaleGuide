@@ -11,6 +11,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->centralWidget->setLayout(ui->verticalLayout);
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = screen->geometry();
+    ui->centralWidget->setMaximumHeight(screenGeometry.height());
+    ui->centralWidget->setMaximumWidth(screenGeometry.width());
 
     //sets up the rest of the ui
     createActions();

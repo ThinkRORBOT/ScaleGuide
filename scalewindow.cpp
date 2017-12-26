@@ -41,7 +41,7 @@ ScaleWindow::ScaleWindow(QWidget *parent) :
     QObject::connect(ui->closeButton, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
     QObject::connect(ui->okButtonM, SIGNAL(clicked(bool)), SLOT(buttonPressed()));
 
-    QStringList list=(QStringList()<<"C"<<"C#/Db"<<"D"<<"D#/Eb"<<"E"<<"F"<<"F#/Gb"<<"G"<<"G#/Ab"<<"A"<<"A#/Bb" << "B");
+    QStringList list=(QStringList()<<"C"<<"D"<<"E"<<"F"<<"G"<<"A"<< "B" << "C#/Db"<<"D#/Eb"<<"F#/Gb"<<"G#/Ab"<<"A#/Bb");
     ui->keyComboBox->addItems(list);
 
 }
@@ -255,6 +255,7 @@ void ScaleWindow::figureMode(){
             QMessageBox msgBox;
             msgBox.setText(it + " is not valid");
             msgBox.exec();
+            return;
             break;
         }
 

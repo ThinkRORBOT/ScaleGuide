@@ -23,7 +23,10 @@ private slots:
 
 private:
     Ui::ShowFretBoard *ui;
-    const QVector<QString> scales= {"C", "C#", "D", "D#", "E", "F", "G", "G#", "A", "A#", "B", "B#"};
+    const QVector<QString> scales= {"C", "D", "E", "F", "G", "A", "B", "C#", "D#", "G#", "A#", "B#"};
+    void getGuitarBoard(QString key);
+    void addNoteToScale(int string, int pos, bool root, QString note);
+    QVector<QString> standardScale;
 };
 
 #endif // SHOWFRETBOARD_H
