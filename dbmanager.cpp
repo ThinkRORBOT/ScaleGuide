@@ -42,7 +42,7 @@ QVector<QString> DbManager::returnScales(int code){
 
     QSqlQuery query;
 
-    QString queryString = "SELECT \"" + QString::number(code) + "\" FROM Scales";
+    QString queryString = "SELECT \"" + QString::number(code) + "\" FROM Scales ORDER BY \"13\" ASC";
 
     query.exec(queryString);
 

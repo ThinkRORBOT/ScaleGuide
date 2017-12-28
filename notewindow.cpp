@@ -25,7 +25,7 @@ NoteWindow::NoteWindow(QWidget *parent) :
     ui->keyComboBox->addItems(list);
 
     list = (QStringList()<< "Aeolian"<<"Altered"<<"Arabian" << "Augmented"
-            << "Augmented Heptatonic" << "Balinese" << "Bepop" << "Bepop Dominant" << "Bepop Locrian" << "Bepop Major" << "Bepop Minor" << "Blues" << "Chinese" << "Chromatic" << "Composite Blues"
+            << "Augmented Heptatonic" << "Balinese" << "Bebop" << "Bebop Dominant" << "Bebop Locrian" << "Bebop Major" << "Bebop Minor" << "Blues" << "Chinese" << "Chromatic" << "Composite Blues"
             << "Diminished Whole Tone" << "Dominant" << "Dorian" << "Dorian #4" << "Dorian b2" << "Dorian Harmonic Lydian" << "Dorian Harmonic Major" << "Egyption" << "Enigmatic"
             << "Flamenco" << "Flat 6 Pentatonic" << "Flat 3 Pentatonic" << "Gypsy" << "Harmonic Major" << "Harmonic Minor" << "Hindu" << "Hirajoshi" << "Hungarian Major"
             << "Hungarian Minor" << "Ichikosucho" << "Insen" << "Indian" << "Ionian"<< "Ionian Augmented" << "Ionic Pentatonic" << "Iwato" << "Kafi raga" << "Kumoi"

@@ -67,6 +67,7 @@ void MainWindow::openAbout() {
 
 void MainWindow::createActions() {
     aboutAction = new QAction(tr("&About"), this);
+    aboutAction->setShortcut(QKeySequence::HelpContents);
     aboutAction->setStatusTip(tr("About this program"));
     connect(aboutAction, &QAction::triggered, this, &MainWindow::openAbout);
 

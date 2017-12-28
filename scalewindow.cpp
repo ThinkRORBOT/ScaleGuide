@@ -142,9 +142,9 @@ QVector<QString> ScaleWindow::getTextBox(int textbox) {
         msgBox.exec();
         return error;
     }
-    else if(notes.size() < 5 && textbox == 1) {
+    else if(notes.size() < 4 && textbox == 1) {
         QMessageBox msgBox;
-        msgBox.setText("There needs to be more than 4 notes entered");
+        msgBox.setText("There needs to be more than 3 notes entered");
         QVector<QString> error = {" "};
         msgBox.exec();
         return error;
@@ -243,7 +243,7 @@ void ScaleWindow::figureMode(){
     QVector<int> scalePos;
 
     //iterates through vector and populates int vector with position within scale
-    for (auto &it: textBoxScale) {
+    for (auto &it: modeScaleReturn) {
         bool found = false;
         for(int i = 0; i < scale.length(); i++){
             if(it == scale[i]) {
@@ -265,7 +265,7 @@ void ScaleWindow::figureMode(){
     //checks the scale for each of the modes
     //find a way later on to find all suitable modes
     for (int i = 0; i < 7; i++){
-        QVector<QString> tempScale = textBoxScale;
+        QVector<QString> tempScale = modeScaleReturn;
         if (i == 0){
             //checks if two vectors are equal
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
@@ -281,8 +281,8 @@ void ScaleWindow::figureMode(){
 
             //makes sure the notes are changed to the right notes
             //convert to use modulo in future cases/if you have time
-            textBoxScale[2] = scale[(scalePos[2] + 1) % 12];
-            textBoxScale[6] = scale[(scalePos[6] + 1) % 12];
+            modeScaleReturn[2] = scale[(scalePos[2] + 11) % 12];
+            modeScaleReturn[6] = scale[(scalePos[6] + 11) % 12];
 
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
             sort(textBoxScale.begin(), textBoxScale.end());
@@ -296,12 +296,11 @@ void ScaleWindow::figureMode(){
         if (i == 2){
 
             //makes sure the notes are changed to the right notes
-            textBoxScale[1] = scale[(scalePos[1] + 1) % 12];
-            textBoxScale[2] = scale[(scalePos[2] + 1) % 12];
-            textBoxScale[5] = scale[(scalePos[5] + 1) % 12];
-            textBoxScale[6] = scale[(scalePos[6] + 1) % 12];
+            modeScaleReturn[1] = scale[(scalePos[1] + 11) % 12];
+            modeScaleReturn[2] = scale[(scalePos[2] + 11) % 12];
+            modeScaleReturn[5] = scale[(scalePos[5] + 11) % 12];
+            modeScaleReturn[6] = scale[(scalePos[6] + 11) % 12];
 
-            qDebug("here");
 
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
             sort(textBoxScale.begin(), textBoxScale.end());
@@ -315,11 +314,8 @@ void ScaleWindow::figureMode(){
 
         if (i == 3){
 
-            if(scalePos[3] == 0){
-                textBoxScale[3] = scale[11];
-            } else {
-                textBoxScale[3] = scale[(scalePos[3] - 1)];
-            }
+
+            modeScaleReturn[3] = scale[(scalePos[3] + 1) % 12];
             qDebug() << modeScaleReturn;
 
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
@@ -335,7 +331,7 @@ void ScaleWindow::figureMode(){
 
             //makes sure the notes are changed to the right notes
 
-            textBoxScale[6] = scale[(scalePos[6] + 1) % 12];
+            modeScaleReturn[6] = scale[(scalePos[6] + 11) % 12];
 
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
             sort(textBoxScale.begin(), textBoxScale.end());
@@ -349,9 +345,9 @@ void ScaleWindow::figureMode(){
         if (i == 5){
 
             //makes sure the notes are changed to the right notes
-            textBoxScale[1] = scale[(scalePos[1] + 1) % 12];
-            textBoxScale[5] = scale[(scalePos[5] + 1) % 12];
-            textBoxScale[6] = scale[(scalePos[6] + 1) % 12];
+            modeScaleReturn[1] = scale[(scalePos[1] + 11) % 12];
+            modeScaleReturn[5] = scale[(scalePos[5] + 11) % 12];
+            modeScaleReturn[6] = scale[(scalePos[6] + 11) % 12];
 
 
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
@@ -363,11 +359,11 @@ void ScaleWindow::figureMode(){
             }
         }
         if (i == 6){
-            textBoxScale[1] = scale[(scalePos[1] + 1) % 12];
-            textBoxScale[5] = scale[(scalePos[5] + 1) % 12];
-            textBoxScale[6] = scale[(scalePos[6] + 1) % 12];
-            textBoxScale[2] = scale[(scalePos[2] + 1) % 12];
-            textBoxScale[4] = scale[(scalePos[4] + 1) % 12];
+            modeScaleReturn[1] = scale[(scalePos[1] + 11) % 12];
+            modeScaleReturn[5] = scale[(scalePos[5] + 11) % 12];
+            modeScaleReturn[6] = scale[(scalePos[6] + 11) % 12];
+            modeScaleReturn[2] = scale[(scalePos[2] + 11) % 12];
+            modeScaleReturn[4] = scale[(scalePos[4] + 11) % 12];
 
 
             sort(modeScaleReturn.begin(), modeScaleReturn.end());
@@ -378,7 +374,7 @@ void ScaleWindow::figureMode(){
                 modeDiscovered = true;
             }
         }
-        textBoxScale = tempScale;
+        modeScaleReturn = tempScale;
         if(!modeDiscovered && i == 6){
             QMessageBox msgBox;
             msgBox.setText("No Suitable mode found");

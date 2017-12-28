@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/resources">
         <file>Resources/fretboard.svg</file>
-        <file>Resources/fretboardnumber.png</file>
         <file>Resources/fretboard2.svg</file>
         <file>Resources/fretboard3.svg</file>
         <file>Resources/fretboard2.png</file>
         <file>Resources/fretboard3.png</file>
+        <file>Resources/fretboard1.png</file>
     </qresource>
     <qresource prefix="/notes">
         <file>Resources/Notes/AnR.png</file>
