@@ -46,13 +46,13 @@ void ShowFretBoard::createActions() {
 
     //adds the actions and calls the appropriate functions
     fretB1 = new QAction(tr("&Style 1"), this);
-    fretB1->isCheckable();
+    fretB1->setCheckable(true);
     connect(fretB1, &QAction::triggered, this, &ShowFretBoard::sFB1);
     fretB2 = new QAction(tr("&Style 2"), this);
-    fretB2->isCheckable();
+    fretB2->setCheckable(true);
     connect(fretB2, &QAction::triggered, this, &ShowFretBoard::sFB2);
     fretB3 = new QAction(tr("&Style 3"), this);
-    fretB3->isCheckable();
+    fretB3->setCheckable(true);
     connect(fretB3, &QAction::triggered, this, &ShowFretBoard::sFB3);
 
 }
@@ -126,6 +126,7 @@ void ShowFretBoard::addNoteToScale(int string, int pos, bool root, QString note)
     QPixmap fret(path);
     noteLabel->setScaledContents(true);
     noteLabel->setPixmap(fret);
+    noteLabel->setStyleSheet("background-color: rgba(255, 255, 255, 120);");
     noteLabel->show();
 
 
@@ -166,6 +167,7 @@ void ShowFretBoard::getInfo(QString key, QString mode){
     int pos = scalesR.indexOf(key);
     standardScale = dbmanager.returnScales(pos + 1);
     QVector<int> scalePos;
+    //adding the position of notes in scales to scalepos
     for (auto &it: standardScale) {
         for(int i = 0; i < scales.length(); i++){
             if(it == scales[i]) {
@@ -175,22 +177,14 @@ void ShowFretBoard::getInfo(QString key, QString mode){
 
     }
     //changes the scale so that it fits to the scale described by the user
-
+    //probably could have been done a lot more elegantly with a file
+    //%12 enables the index of scales to stay within limits
     if(mode == "Aeolian"){
         standardScale[2] = scales[(scalePos[2] + 11) % 12];
 
         standardScale[5] = scales[(scalePos[5] + 11) % 12];
         standardScale[6] = scales[(scalePos[6] + 11) % 12];
 
-    }
-    else if (mode == "Altered") {
-        for (int i = 0; i < 6; i++){
-            if (scalePos[i] == 0){
-                standardScale[i] = scales[11];
-            } else {
-                standardScale[i] = scales[scalePos[i] - 1];
-            }
-        }
     }
     else if (mode == "Arabian") {
         standardScale[1] = scales[(scalePos[1] + 11) % 12];
@@ -210,11 +204,12 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         standardScale[2] = scales[(scalePos[2] + 11) % 12];
         standardScale[5] = scales[(scalePos[5] + 11) % 12];
     }
-    else if (mode == "Bebop" || "Bebob Major") {
+    else if (mode == "Bebop" || mode == "Bebob Major") {
         standardScale.append(scales[scalePos[0] + 8]);
     }
     else if (mode == "Bebop Dominant") {
         standardScale.append(scales[scalePos[0] + 10]);
+        qDebug() << mode;
     }
     else if (mode == "Bebop Locrian") {
         standardScale[1] = scales[(scalePos[1] + 11) % 12];
@@ -224,9 +219,231 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         standardScale.append(scales[scalePos[0] + 5]);
     }
     else if (mode == "Bebop Minor") {
-
         standardScale[6] = scales[(scalePos[6] + 11) % 12];
         standardScale.append(scales[scalePos[0] + 3]);
+    }
+    else if (mode == "Blues") {
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+        standardScale[2] = "";
+        standardScale[5] = scales[(scalePos[5] + 1) % 12];
+        standardScale[6] = "";
+    }
+    else if (mode == "Chinese") {
+        standardScale[1] = "";
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[5] = "";
+    }
+    else if (mode == "Chromatic") {
+        standardScale = {"C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
+    }
+    else if (mode == "Composite Blues") {
+        standardScale.append(scales[(scalePos[0] + 4) % 12]);
+        standardScale.append(scales[(scalePos[0] + 6) % 12]);
+        standardScale[6] = "";
+    }
+    else if (mode == "Diminished") {
+        standardScale[3] = scales[(scalePos[3] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale.append(scales[scalePos[0] + 8]);
+    }
+    else if (mode == "Diminished Whole Tone" || mode == "Altered") {
+        for (int i = 1; i <= 6; i++){
+            standardScale[i] = scales[(scalePos[i] + 11) % 12];
+        }
+    }
+    else if (mode == "Dominant") {
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Dorian") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Dorian #4") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+    }
+    else if (mode == "Dorian b2") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+    }
+    else if (mode == "Double Harmonic Lydian") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Double Harmonic Major") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Egyptian") {
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[2] = "";
+        standardScale[5] = "";
+    }
+    else if (mode == "Enigmatic") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[4] = scales[(scalePos[4] + 1) % 12];
+        standardScale[5] = scales[(scalePos[5] + 1) % 12];
+    }
+    else if (mode == "Flamenco" || mode == "Phrygian") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Flat 6 Pentatonic") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[3] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Flat 3 Pentatonic") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[3] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Gypsy") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Harmonic Major") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Harmonic Minor") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+    }
+    else if (mode == "Hindu") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Hirajoshi"){
+        standardScale[3] = "";
+        standardScale[6] = "";
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+    }
+    else if (mode == "Hungarian Major") {
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+    }
+    else if (mode == "Hungarian Minor") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Ichikosucho") {
+        standardScale.append(scales[(scalePos[0] + 6) % 12]);
+    }
+    else if (mode == "Insen") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = "";
+        standardScale[5] = "";
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Indian") {
+        standardScale[1] = "";
+        standardScale[5] = "";
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Ionian" || mode == "Major") {
+        //do nothing
+    }
+    else if (mode == "Ionian Augmented"){
+        standardScale[4] = scales[(scalePos[4] + 1) % 12];
+    }
+    else if (mode == "Ionian Pentatonic" || mode == "Major Pentatonic") {
+        standardScale[3] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Iwato") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = "";
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = "";
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Kafi raga") {
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+        standardScale.append(scales[(scalePos[0] + 8) % 12]);
+    }
+    else if (mode == "Kumoi") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[3] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Kumoijoshi") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = "";
+        standardScale[6] = "";
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Locrian") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Locrian #2") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Locrian Major") {
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Locrian Pentatonic") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[3] = "";
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = "";
+    }
+    else if (mode == "Lydian") {
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+    }
+    else if (mode == "Lydian #5p Pentatonic") {
+        standardScale[1] = "";
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[4] = scales[(scalePos[4] + 1) % 12];
+        standardScale[5] = "";
+    }
+    else if (mode == "Lydian #9"){
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+    }
+    else if (mode == "Lydian Augmented") {
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[4] = scales[(scalePos[4] + 1) % 12];
+    }
+    else if (mode == "Lydian b7" || mode == "Lydian Dominant") {
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Lydian Diminished") {
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+    }
+    else if (mode == "Lydian Minor") {
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Lydian Pentatonic") {
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[6] = "";
+        standardScale[4] = "";
+    }
+    else {
+        qDebug() << "Not Here";
     }
     getGuitarBoard(key);
 }

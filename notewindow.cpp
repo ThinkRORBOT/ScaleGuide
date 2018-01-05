@@ -25,12 +25,12 @@ NoteWindow::NoteWindow(QWidget *parent) :
     ui->keyComboBox->addItems(list);
 
     list = (QStringList()<< "Aeolian"<<"Altered"<<"Arabian" << "Augmented"
-            << "Augmented Heptatonic" << "Balinese" << "Bebop" << "Bebop Dominant" << "Bebop Locrian" << "Bebop Major" << "Bebop Minor" << "Blues" << "Chinese" << "Chromatic" << "Composite Blues"
-            << "Diminished Whole Tone" << "Dominant" << "Dorian" << "Dorian #4" << "Dorian b2" << "Dorian Harmonic Lydian" << "Dorian Harmonic Major" << "Egyption" << "Enigmatic"
+            << "Augmented Heptatonic" << "Balinese" << "Bebop" << "Bebop Dominant" << "Bebop Locrian" << "Bebop Major" << "Bebop Minor" << "Blues" << "Chinese" << "Chromatic" << "Composite Blues" << "Diminished"
+            << "Diminished Whole Tone" << "Dominant" << "Dorian" << "Dorian #4" << "Dorian b2" << "Double Harmonic Lydian" << "Double Harmonic Major" << "Egyption" << "Enigmatic"
             << "Flamenco" << "Flat 6 Pentatonic" << "Flat 3 Pentatonic" << "Gypsy" << "Harmonic Major" << "Harmonic Minor" << "Hindu" << "Hirajoshi" << "Hungarian Major"
             << "Hungarian Minor" << "Ichikosucho" << "Insen" << "Indian" << "Ionian"<< "Ionian Augmented" << "Ionic Pentatonic" << "Iwato" << "Kafi raga" << "Kumoi"
-            << "Kumoi Joshi" << "Locrian" << "Locrian #2" << "Locrian Major" << "Locrian Pentatonic" << "Lydian" << "Lydian #5P pentatonic" << "Lydian #9 Pentatonic" << "Lydian Augmented"
-            << "Lydian b7" << "Lydian Diminished" << "Lydian Dominant" << "Lydian Dominant Pentatonic" << "Lydian Minor" << "Lydian Pentatonic" << "Major" <<"Major Blues" << "Major b2 pentatonic"
+            << "Kumoi Joshi" << "Locrian" << "Locrian #2" << "Locrian Major" << "Locrian Pentatonic" << "Lydian" << "Lydian #5p Pentatonic" << "Lydian #9" << "Lydian Augmented"
+            << "Lydian b7" << "Lydian Diminished" << "Lydian Dominant" << "Lydian Minor" << "Lydian Pentatonic" << "Major" <<"Major Blues" << "Major b2 pentatonic"
             << "Malkos Raga" << "Melodic Minor" << "Melodic Minor Fifth mode" << "Melodic Minor Second mode" << "Minor" << "Minor #7M Pentatonic" << "Minor Bebop" << "Minor Blues"
             << "Minor Hexatonic" << "Minor Seven Flat Five Pentatonic" << "Minor Six Diminished" << "Minor Six Pentatonic" << "Mixolydian" << "Mixolydian b6M" << "Mixolydian pentatonic" << "Neopolitan"
             << "Neopolitan Major Pentatonic" << "Neopolitan Minor" << "Oriental" << "Pelog" << "Persian" << "Phrygian" << "Phrygian Major" << "Prometheus" << "Prometheus Neoplitan"

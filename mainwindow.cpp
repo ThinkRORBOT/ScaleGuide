@@ -39,6 +39,7 @@ void MainWindow::setButtons(){
     QObject::connect(ui->scaleButton, SIGNAL(clicked(bool)), SLOT(handleButton()));
     QObject::connect(ui->noteButton, SIGNAL(clicked(bool)), SLOT(handleButton()));
     QObject::connect(ui->chordButton, SIGNAL(clicked(bool)), SLOT(handleButton()));
+    ui->chordButton->hide();
 
 }
 
