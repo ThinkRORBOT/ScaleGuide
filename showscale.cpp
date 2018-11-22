@@ -4,8 +4,8 @@
 #include<string>
 #include<QVector>
 #include<QString>
-#include<QTCore>
-#include<QTGui>
+#include<QtCore>
+#include<QtGui>
 #include<QMessageBox>
 
 ShowScale::ShowScale(QWidget *parent) :

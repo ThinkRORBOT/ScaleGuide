@@ -2,8 +2,8 @@
 #include "ui_notewindow.h"
 #include "mainwindow.h"
 
-#include <QTCore>
-#include <QTGui>
+#include <QtCore>
+#include <QtGui>
 #include <QWidget>
 #include <QMessageBox>
 
@@ -31,7 +31,7 @@ NoteWindow::NoteWindow(QWidget *parent) :
             << "Hungarian Minor" << "Ichikosucho" << "Insen" << "Indian" << "Ionian"<< "Ionian Augmented" << "Ionic Pentatonic" << "Iwato" << "Kafi raga" << "Kumoi"
             << "Kumoi Joshi" << "Locrian" << "Locrian #2" << "Locrian Major" << "Locrian Pentatonic" << "Lydian" << "Lydian #5p Pentatonic" << "Lydian #9" << "Lydian Augmented"
             << "Lydian b7" << "Lydian Diminished" << "Lydian Dominant" << "Lydian Minor" << "Lydian Pentatonic" << "Major" <<"Major Blues" << "Major b2 pentatonic"
-            << "Malkos Raga" << "Melodic Minor" << "Melodic Minor Fifth mode" << "Melodic Minor Second mode" << "Minor" << "Minor #7M Pentatonic" << "Minor Bebop" << "Minor Blues"
+            << "Malkos Raga" << "Melodic Minor" << "Melodic Minor Fifth Mode" << "Melodic Minor Second Mode" << "Minor" << "Minor #7M Pentatonic" << "Minor Bebop" << "Minor Blues"
             << "Minor Hexatonic" << "Minor Seven Flat Five Pentatonic" << "Minor Six Diminished" << "Minor Six Pentatonic" << "Mixolydian" << "Mixolydian b6M" << "Mixolydian pentatonic" << "Neopolitan"
             << "Neopolitan Major Pentatonic" << "Neopolitan Minor" << "Oriental" << "Pelog" << "Persian" << "Phrygian" << "Phrygian Major" << "Prometheus" << "Prometheus Neoplitan"
             << "Purvi Raga" << "Ritusen" << "Romanian Minor" << "Scriabin" << "Six Tone Symmetric" << "Spanish" << "Spanish Heptatonic" << "Super Locrian" << "Super Locrian Pentatonic" << "Todi Raga" << "Vietnamese" << "Whole Tone"

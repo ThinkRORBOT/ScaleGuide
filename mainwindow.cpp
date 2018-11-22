@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QTCore>
-#include <QTGui>
+#include <QtCore>
+#include <QtGui>
 #include <QWidget>
 #include <QMessageBox>
 

@@ -3,8 +3,8 @@
 
 #include "dbmanager.h"
 
-#include <QTCore>
-#include <QTGui>
+#include <QtCore>
+#include <QtGui>
 #include <QWidget>
 #include <QString>
 #include <QVector>
@@ -441,6 +441,30 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         standardScale[3] = scales[(scalePos[3] + 1) % 12];
         standardScale[6] = "";
         standardScale[4] = "";
+    }
+    else if (mode == "Major Blues") {
+        standardScale.append(scales[(scalePos[0] + 3) % 12]);
+        standardScale[6] = "";
+        standardScale[3] = "";
+    }
+    else if (mode == "Major b2 pentatonic") {
+        standardScale[6] = "";
+        standardScale[3] = "";
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+    }
+    else if (mode == "Malkos Raga") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[1] = "";
+        standardScale[4] = "";
+    }
+    else if (mode == "Melodic Minor") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+    }
+    else if (mode == "Melodic Minor Fifth Mode") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
     }
     else {
         qDebug() << "Not Here";

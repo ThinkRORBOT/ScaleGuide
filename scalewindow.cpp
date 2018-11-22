@@ -3,8 +3,8 @@
 #include "mainwindow.h"
 #include "dbmanager.h"
 #include "showscale.h"
-#include <QTCore>
-#include <QTGui>
+#include <QtCore>
+#include <QtGui>
 #include <QWidget>
 #include <QMessageBox>
 #include <string>
