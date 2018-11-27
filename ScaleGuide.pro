@@ -28,30 +28,31 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    notewindow.cpp \
     scalewindow.cpp \
     dbmanager.cpp \
     showscale.cpp \
-    chordwindow.cpp \
-    showfretboard.cpp
+    showfretboard.cpp \
+    ShowFretBoardChords/chordwindow.cpp \
+    ShowFretBoardNotes/notewindow.cpp
 
 HEADERS  += mainwindow.h \
-    notewindow.h \
-    scalewindow.h \
     dbmanager.h \
     showscale.h \
-    chordwindow.h \
-    showfretboard.h
+    showfretboard.h \
+    scalewindow.h \
+    ShowFretBoardNotes/notewindow.h \
+    ShowFretBoardChords/chordwindow.h
 
 FORMS    += mainwindow.ui \
-    notewindow.ui \
     scalewindow.ui \
     showscale.ui \
-    chordwindow.ui \
-    showfretboard.ui
+    showfretboard.ui \
+    ShowFretBoardChords/chordwindow.ui \
+    ShowFretBoardNotes/notewindow.ui
 
 RESOURCES += \
     resources.qrc
 
 DISTFILES += \
-    guitarboard.txt
+    guitarboard.txt \
+    note_to_scale.db

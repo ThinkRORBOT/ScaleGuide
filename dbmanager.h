@@ -6,6 +6,9 @@
 #include <QString>
 #include <vector>
 #include <string>
+#include <QMessageBox>
+#include <QFile>
+
 class DbManager
 {
 public:
@@ -15,6 +18,7 @@ public:
 
 private:
     QSqlDatabase db;
+    QString dbPath;
 
 };
 

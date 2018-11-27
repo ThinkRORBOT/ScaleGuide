@@ -35,5 +35,6 @@
     </qresource>
     <qresource prefix="/">
         <file>guitarboard.txt</file>
+        <file>note_to_scale.db</file>
     </qresource>
 </RCC>

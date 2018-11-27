@@ -3,9 +3,9 @@
 
 #include <QMainWindow>
 #include <QPushButton>
-#include "notewindow.h"
+#include "ShowFretBoardNotes/notewindow.h"
 #include "scalewindow.h"
-#include "chordwindow.h"
+#include "ShowFretBoardChords/chordwindow.h"
 
 namespace Ui {
 class MainWindow;

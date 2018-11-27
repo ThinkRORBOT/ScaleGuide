@@ -1,6 +1,7 @@
 #include "dbmanager.h"
 #include<QSqlDatabase>
 #include<QDir>
+#include<QtCore>
 #include<QCoreApplication>
 #include<QString>
 #include<string>
@@ -12,6 +13,7 @@
 #include<QFileInfo>
 #include<QVariant>
 #include<QDebug>
+#include<QFile>
 
 DbManager::DbManager()
 {
@@ -20,10 +22,24 @@ DbManager::DbManager()
 
     //sets up the database connection
     db = QSqlDatabase::addDatabase("QSQLITE");
+
+    dbPath = QCoreApplication::applicationDirPath()+"/note_to_scale.db";
+    qDebug() << dbPath;
+    if (QFile::exists(dbPath))
+    {
+        QFile::remove(dbPath);
+    }
+
     //replace path with where this is located on your file system
     //db.setDatabaseName("F:/Projects/Programming/cpp/ScaleGuide/Databases/note_to_scale.db");
+    if (!QFile::copy(":/note_to_scale.db", dbPath)) {
+        QMessageBox msgbox;
+        msgbox.setText("Could not copy database to path");
+        msgbox.setStandardButtons(QMessageBox::Ok);
+        int ret = msgbox.exec();
+    }
 
-    db.setDatabaseName(QCoreApplication::applicationDirPath()+"/note_to_scale.db");
+    db.setDatabaseName(dbPath);
     qDebug() << QCoreApplication::applicationDirPath();
     if(!db.open()){
         qDebug("Error: connection with database failed");
