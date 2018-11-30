@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include "ShowFretBoardNotes/notewindow.h"
-#include "scalewindow.h"
+#include "ShowFretBoardScales/scalewindow.h"
 #include "ShowFretBoardChords/chordwindow.h"
 
 namespace Ui {

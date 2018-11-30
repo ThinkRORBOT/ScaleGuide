@@ -382,7 +382,6 @@ void ScaleWindow::figureMode(){
             return;
         }
         else if (i == 6){
-            qDebug("here");
             openNoteWindowOption(mode);
         }
     }

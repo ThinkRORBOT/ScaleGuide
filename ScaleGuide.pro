@@ -28,20 +28,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    scalewindow.cpp \
     dbmanager.cpp \
-    showscale.cpp \
     showfretboard.cpp \
     ShowFretBoardChords/chordwindow.cpp \
-    ShowFretBoardNotes/notewindow.cpp
+    ShowFretBoardNotes/notewindow.cpp \
+    ShowFretBoardScales/showscale.cpp \
+    ShowFretBoardScales/scalewindow.cpp
 
 HEADERS  += mainwindow.h \
     dbmanager.h \
-    showscale.h \
     showfretboard.h \
-    scalewindow.h \
     ShowFretBoardNotes/notewindow.h \
-    ShowFretBoardChords/chordwindow.h
+    ShowFretBoardChords/chordwindow.h \
+    ShowFretBoardScales/scalewindow.h \
+    ShowFretBoardScales/showscale.h
 
 FORMS    += mainwindow.ui \
     scalewindow.ui \
