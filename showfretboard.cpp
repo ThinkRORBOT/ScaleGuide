@@ -176,10 +176,13 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         }
 
     }
+
+    // source of scale information https://gui-gui.rutgerschimmel.nl/
+
     //changes the scale so that it fits to the scale described by the user
     //probably could have been done a lot more elegantly with a file
     //%12 enables the index of scales to stay within limits
-    if(mode == "Aeolian"){
+    if(mode == "Aeolian" || mode == "Minor"){
         standardScale[2] = scales[(scalePos[2] + 11) % 12];
 
         standardScale[5] = scales[(scalePos[5] + 11) % 12];
@@ -463,6 +466,10 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         standardScale[2] = scales[(scalePos[2] + 11) % 12];
     }
     else if (mode == "Melodic Minor Fifth Mode") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Minor #7M Pentatonic") {
         standardScale[5] = scales[(scalePos[5] + 11) % 12];
         standardScale[6] = scales[(scalePos[6] + 11) % 12];
     }
