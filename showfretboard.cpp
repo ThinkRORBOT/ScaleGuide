@@ -473,6 +473,41 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         standardScale[5] = scales[(scalePos[5] + 11) % 12];
         standardScale[6] = scales[(scalePos[6] + 11) % 12];
     }
+    else if (mode == "Minor Bebop") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale.append(scales[(scalePos[6]) % 12]);
+    }
+    else if (mode == "Minor Blues") {
+        standardScale[2] = "";
+        standardScale[5] = "";
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale.append(scales[(scalePos[0]+1) % 12]);
+    }
+    else if (mode == "Minor Hexatonic") {
+        standardScale[5] = "";
+        standardScale[2] = scales[(scalePos[2] + 1) % 12];
+    }
+    else if (mode == "Minor Seven Flat Five Pentatonic") {
+        standardScale[2] = "";
+        standardScale[5] = "";
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Minor Six Diminished") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale.append(scales[(scalePos[4]+1) % 12]);
+    }
+    else if (mode == "Minor Six Pentatonic") {
+        standardScale[2] = "";
+        standardScale[6] = "";
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+    }
+    else if (mode == "Mixolydian") {
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
     else {
         qDebug() << "Not Here";
     }
