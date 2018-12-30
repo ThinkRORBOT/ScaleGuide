@@ -104,11 +104,11 @@ void ShowFretBoard::addNoteToScale(int string, int pos, bool root, QString note)
     int offsetWidth = 0;
     int offsetHeight = 0;
     float boardHeight = size.rheight();
-    boardHeight = boardHeight/1.17;
+    boardHeight = static_cast<float>(boardHeight/1.17);
     float boardWidth = size.rwidth() + 10;
     offsetWidth -= boardWidth/25-10;
 
-    offsetHeight =+ boardHeight/3;
+    offsetHeight =+ static_cast<int>(boardHeight/3);
 
     //creates a new label and sets where the label should be placed.
     QLabel *noteLabel = new QLabel(this);
@@ -507,6 +507,31 @@ void ShowFretBoard::getInfo(QString key, QString mode){
     }
     else if (mode == "Mixolydian") {
         standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Mixolydian b6M") {
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Mixolydian pentatonic") {
+        standardScale[1] = "";
+        standardScale[5] = "";
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Neopolitan") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Neopolitan Major Pentatonic") {
+        standardScale[1] = "";
+        standardScale[5] = "";
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Neopolitan Minor") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
     }
     else {
         qDebug() << "Not Here";
