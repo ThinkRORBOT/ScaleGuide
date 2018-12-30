@@ -1,7 +1,16 @@
 # Scale Guide
 Application for Musicians particularly guitarists. Visualisese notes that are in a certain scale/mode, find scales and modes that which a series of notes belong to.
 
+# Build
+git clone:
+```
+git clone git@github.com:ThinkRORBOT/ScaleGuide.git
+```
 
+Make:
+```
+qmake ScaleGuide.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
+```
 # Currently working on
 
 Completing scales logic
