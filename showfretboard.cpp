@@ -533,6 +533,120 @@ void ShowFretBoard::getInfo(QString key, QString mode){
         standardScale[2] = scales[(scalePos[2] + 11) % 12];
         standardScale[5] = scales[(scalePos[5] + 11) % 12];
     }
+    else if (mode == "Oriental") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Pelog") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[3] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Persian") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Phrygian") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Phrygian Major") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Prometheus") {
+        standardScale[3] = "";
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Prometheus Neoplitan") {
+        standardScale[3] = "";
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Purvi Raga") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale.append(scales[(scalePos[3]+1) % 12]);
+    }
+    else if (mode == "Ritusen") {
+        standardScale[2] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Romanian Minor") {
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Scriabin") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[3] = "";
+        standardScale[6] = "";
+    }
+    else if (mode == "Six Tone Symmetric") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 1) % 12];
+        standardScale[6] = "";
+    }
+    else if (mode == "Spanish") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Spanish Heptatonic") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale.append(scales[(scalePos[2]+1) % 12]);
+    }
+    else if (mode == "Super Locrian") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[3] = "";
+        standardScale.append(scales[(scalePos[2]+1) % 12]);
+    }
+    else if (mode == "Super Locrian Pentatonic") {
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+        standardScale[3] = "";
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = "";
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+    }
+    else if (mode == "Todi Raga") {
+        standardScale[1] = scales[(scalePos[1] + 11) % 12];
+        standardScale[2] = scales[(scalePos[2] + 11) % 12];
+        standardScale[3] = scales[(scalePos[3] + 1) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+    }
+    else if (mode == "Vietnamese") {
+        standardScale[1] = scales[(scalePos[1] + 1) % 12];
+        standardScale[2] = "";
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = "";
+    }
+    else if (mode == "Whole Tone") {
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[3] = "";
+    }
+    else if (mode == "Whole Tone Pentatonic") {
+        standardScale[1] = "";
+        standardScale[4] = scales[(scalePos[4] + 11) % 12];
+        standardScale[5] = scales[(scalePos[5] + 11) % 12];
+        standardScale[6] = scales[(scalePos[6] + 11) % 12];
+        standardScale[3] = "";
+    }
     else {
         qDebug() << "Not Here";
     }
