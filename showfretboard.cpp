@@ -98,6 +98,7 @@ void ShowFretBoard::setupFretBoard(QString fretNum){
 }
 
 void ShowFretBoard::addNoteToScale(int string, int pos, bool root, QString note){
+    // ToDo: make labels change position as the board changes size
     QSize size = ui->fretboardLabel->size();
     pos++;
 
@@ -108,7 +109,7 @@ void ShowFretBoard::addNoteToScale(int string, int pos, bool root, QString note)
     float boardWidth = size.rwidth() + 10;
     offsetWidth -= boardWidth/25-10;
 
-    offsetHeight =+ static_cast<int>(boardHeight/3);
+    offsetHeight =+ static_cast<int>(boardHeight/2.35);
 
     //creates a new label and sets where the label should be placed.
     QLabel *noteLabel = new QLabel(this);
@@ -165,6 +166,7 @@ void ShowFretBoard::getGuitarBoard(QString key){
 void ShowFretBoard::getInfo(QString key, QString mode){
     DbManager dbmanager;
     int pos = scalesR.indexOf(key);
+    ui->curScaleLabel->setText("Current Scale: " + key + " " + mode);
     standardScale = dbmanager.returnScales(pos + 1);
     QVector<int> scalePos;
     //adding the position of notes in scales to scalepos
@@ -212,7 +214,6 @@ void ShowFretBoard::getInfo(QString key, QString mode){
     }
     else if (mode == "Bebop Dominant") {
         standardScale.append(scales[scalePos[0] + 10]);
-        qDebug() << mode;
     }
     else if (mode == "Bebop Locrian") {
         standardScale[1] = scales[(scalePos[1] + 11) % 12];
