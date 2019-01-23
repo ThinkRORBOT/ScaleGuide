@@ -134,6 +134,60 @@
      </font>
     </property>
    </widget>
+   <widget class="QLabel" name="secondsLabel">
+    <property name="geometry">
+     <rect>
+      <x>587</x>
+      <y>77</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Seconds:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="secondsInput">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>70</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>0 for Infinite Seconds</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="scaleList">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>230</y>
+      <width>781</width>
+      <height>151</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>180</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -141,7 +195,7 @@
      <x>0</x>
      <y>0</y>
      <width>889</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

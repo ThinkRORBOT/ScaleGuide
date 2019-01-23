@@ -27,16 +27,14 @@ void ShowScale::openNoteWindow(){
     QString scale = "";
     if (ui->scaleList->currentItem()->text() != ""){
         scale = ui->scaleList->currentItem()->text();
-        if (scale.length() != 1) {
-            scale.truncate(2);
-        }
     } else {
          QMessageBox::about(this, tr("Error"), tr("Please select a scale first"));
          return;
     }
     showFretBoard = new ShowFretBoard();
     showFretBoard->show();
-    showFretBoard->getInfo(scale, "Major");
+    QStringList scaleinfo = scale.split(' ');
+    showFretBoard->getInfo(scaleinfo[0], scaleinfo[1]);
 
 }
 
