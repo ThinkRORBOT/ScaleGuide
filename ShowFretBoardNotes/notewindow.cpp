@@ -24,6 +24,7 @@ NoteWindow::NoteWindow(QWidget *parent) :
     QStringList list=(QStringList()<<"C"<<"D"<<"E"<<"F"<<"G"<<"A"<< "B" << "C#/Db"<<"D#/Eb"<<"F#/Gb"<<"G#/Ab"<<"A#/Bb");
     ui->keyComboBox->addItems(list);
 
+
     list = (QStringList()<< "Aeolian"<<"Altered"<<"Arabian" << "Augmented"
             << "Augmented Heptatonic" << "Balinese" << "Bebop" << "Bebop Dominant" << "Bebop Locrian" << "Bebop Major" << "Bebop Minor" << "Blues" << "Chinese" << "Chromatic" << "Composite Blues" << "Diminished"
             << "Diminished Whole Tone" << "Dominant" << "Dorian" << "Dorian #4" << "Dorian b2" << "Double Harmonic Lydian" << "Double Harmonic Major" << "Egyption" << "Enigmatic"
@@ -90,4 +91,13 @@ void NoteWindow::createMenu() {
 NoteWindow::~NoteWindow()
 {
     delete ui;
+}
+
+void NoteWindow::on_addButton_clicked()
+{
+    int keyNum = ui->keyComboBox->currentIndex();
+    QString keyStr = ui->keyComboBox->currentText();
+    QString modeStr = ui->modeComboBox->currentText();
+    QString numSeconds = ui->secondsInput->text();
+    ui->secondsInput->setText("");
 }

@@ -23,6 +23,8 @@ private slots:
     void openAbout();
     void openHelp();
 
+    void on_addButton_clicked();
+
 private:
     Ui::NoteWindow *ui;
     QMenu *helpMenu;

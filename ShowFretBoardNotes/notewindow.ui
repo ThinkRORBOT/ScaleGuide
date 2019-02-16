@@ -165,16 +165,6 @@
      <string>0 for Infinite Seconds</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="scaleList">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>230</y>
-      <width>781</width>
-      <height>151</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="addButton">
     <property name="geometry">
      <rect>
@@ -186,6 +176,42 @@
     </property>
     <property name="text">
      <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="removePushButton">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>180</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Remove</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="changeButton">
+    <property name="geometry">
+     <rect>
+      <x>680</x>
+      <y>180</y>
+      <width>88</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Change</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="scaleTableWidget">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>240</y>
+      <width>781</width>
+      <height>141</height>
+     </rect>
     </property>
    </widget>
   </widget>
