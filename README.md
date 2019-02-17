@@ -15,6 +15,11 @@ qmake ScaleGuide.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
 Completing scales logic
 
+# Screenshots
+
+![Alt text](ScreenShots/scale_window.png?raw=true "ScaleWindow")
+![Alt text](ScreenShots/scale_select.png?raw=true "Select Menu")
+
 # TODO:
 Finish setting up all of the modes
 Ability to add new strings
